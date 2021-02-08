@@ -18,7 +18,13 @@ class Training
 
     public function assignParticipants()
     {
-
+        foreach ($this->registered as $key => $val) {
+            $index_counter = 0;
+            while($val->getSessionChoice($index_counter)->isFull()) {
+                $index_counter++;
+            }
+            $val->getSessionChoice($index_counter)->addParticipant($val);
+        }
     }
 
     public function addSessions(Session $newSession)

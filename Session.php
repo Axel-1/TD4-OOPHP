@@ -6,7 +6,7 @@ class Session
     private int $sessionID;
     private string $startDate;
     private int $maxPlaces;
-    private array $participants;
+    private array $participants = array();
 
     public function __construct(int $newSessionID, string $newStartDate, int $newMaxPlaces)
     {

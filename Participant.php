@@ -17,7 +17,7 @@ class Participant
         $this->choices = $newChoices;
     }
 
-    public function getSessionChoices(int $index) : Session
+    public function getSessionChoice(int $index) : Session
     {
         return $this->choices[$index];
     }
