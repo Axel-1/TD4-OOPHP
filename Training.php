@@ -20,7 +20,7 @@ class Training
     {
         foreach ($this->registered as $key => $val) {
             $index_counter = 0;
-            while($val->getSessionChoice($index_counter)->isFull()) {
+            while ($val->getSessionChoice($index_counter)->isFull()) {
                 $index_counter++;
             }
             $val->getSessionChoice($index_counter)->addParticipant($val);
@@ -34,7 +34,7 @@ class Training
 
     public function addParticipant(Participant $newParticipant)
     {
-        if (count($this->registered) != 0) {
+        /*if (count($this->registered) != 0) {
             $indexCounter = 0;
             while ($indexCounter < count($this->registered)
                 && $newParticipant->getSeniority() < $this->registered[$indexCounter]->getSeniority()) {
@@ -51,6 +51,13 @@ class Training
 
         } else {
             $this->registered[0] = $newParticipant;
-        }
+        }*/
+        $this->registered[] = $newParticipant;
+        usort($this->registered, function ($a, $b) {
+            if ($a->getSeniority() == $b->getSeniority()) {
+                return 0;
+            }
+            return ($a->getSeniority() > $b->getSeniority()) ? -1 : 1;
+        });
     }
 }
